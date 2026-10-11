@@ -69,12 +69,62 @@ function payment(customerMoney) {
 }
 function calculateChange(customerMoney) {
   //function to split number into whole and decimal to calculate change
-    let wholeNumber = Math.floor(customerMoney);
-    let decimalNumber = (customerMoney - wholeNumber).toFixed(2);
+  //split change up not their input, calculate change before split decimal
+    //let wholeNumber = Math.floor(customerMoney);
+    //let decimalNumber = (customerMoney - wholeNumber).toFixed(2);
+    /*let customerChange = customerMoney - price;
+    //console.log(customerChange);
+    let wholeNumber = Math.floor(customerChange);
+    let decimalNumber = (customerChange - wholeNumber).toFixed(2);
     console.log(wholeNumber);
     console.log(decimalNumber);
-}
+    console.log("Your change is: " + "$" + customerChange.toFixed(2));
+    //instead of remainder 0 do if less than
+    if (wholeNumber >= 100) {
 
-calculateChange(10.2);
+    } 
+    else if(wholeNumber >= 5) {
+      console.log("5");
+      wholeNumber -= 5;
+      if(wholeNumber >= 1) {
+
+      }
+    }*/
+   let customerChange = Math.round(customerMoney * 100) - Math.round(price * 100);
+   console.log(customerChange);
+   while(customerChange >= 10000) {
+    customerChange -= 10000;
+   }
+   while(customerChange >= 2000) {
+    customerChange -= 2000;
+   }
+   while(customerChange >= 1000) {
+    customerChange -= 1000;
+   }
+   while(customerChange >= 500) {
+    customerChange -= 500;
+   }
+   while(customerChange >= 100) {
+    customerChange -= 100;
+   }
+   while(customerChange >= 25) {
+    customerChange -= 25;
+   }
+   while(customerChange >= 10) {
+    customerChange -= 10;
+   }
+   while(customerChange >= 5) {
+    customerChange -= 5;
+   }
+   while(customerChange >= 1) {
+    customerChange -= 1;
+   }   
+   console.log(customerChange);
+  }
+
+  
+
+
+calculateChange(7.6);
 //payment(4);
 //amountInRegister();
