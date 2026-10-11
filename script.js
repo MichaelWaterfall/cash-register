@@ -92,31 +92,31 @@ function calculateChange(customerMoney) {
     }*/
    let customerChange = Math.round(customerMoney * 100) - Math.round(price * 100);
    console.log(customerChange);
-   while(customerChange >= 10000) {
+   while(customerChange >= 10000 && cid[8][1] > 0) {
     customerChange -= 10000;
    }
-   while(customerChange >= 2000) {
+   while(customerChange >= 2000 && cid[7][1] > 0) {
     customerChange -= 2000;
    }
-   while(customerChange >= 1000) {
+   while(customerChange >= 1000 && cid[6][1] > 0) {
     customerChange -= 1000;
    }
-   while(customerChange >= 500) {
+   while(customerChange >= 500 && cid[5][1] > 0) {
     customerChange -= 500;
    }
-   while(customerChange >= 100) {
+   while(customerChange >= 100 && cid[4][1] > 0) {
     customerChange -= 100;
    }
-   while(customerChange >= 25) {
+   while(customerChange >= 25 && cid[3][1] > 0) {
     customerChange -= 25;
    }
-   while(customerChange >= 10) {
+   while(customerChange >= 10 && cid[2][1] > 0) {
     customerChange -= 10;
    }
-   while(customerChange >= 5) {
+   while(customerChange >= 5 && cid[1][1] > 0) {
     customerChange -= 5;
    }
-   while(customerChange >= 1) {
+   while(customerChange >= 1 && cid[0][1] > 0) {
     customerChange -= 1;
    }   
    console.log(customerChange);
@@ -126,5 +126,6 @@ function calculateChange(customerMoney) {
 
 
 calculateChange(7.6);
+//console.log(cid[8][1]);
 //payment(4);
 //amountInRegister();
