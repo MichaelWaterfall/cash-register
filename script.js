@@ -11,6 +11,18 @@ let cid = [
   ['ONE HUNDRED', 100]
 ];
 
+let changeGiven = [
+  ['PENNY', 0],
+  ['NICKEL', 0],
+  ['DIME', 0],
+  ['QUARTER', 0],
+  ['ONE', 0],
+  ['FIVE', 0],
+  ['TEN', 0],
+  ['TWENTY', 0],
+  ['ONE HUNDRED', 0]
+];
+
 function amountInRegister() {
   let totalAmountInRegister = 0
   for (let i = 0; i < cid.length; i++) {
@@ -92,40 +104,80 @@ function calculateChange(customerMoney) {
     }*/
    let customerChange = Math.round(customerMoney * 100) - Math.round(price * 100);
    console.log(customerChange);
-   while(customerChange >= 10000 && cid[8][1] > 0) {
+   let availableHundredDollar = Math.round(cid[8][1] * 100);
+   let availableTwentyDollar = Math.round(cid[7][1] * 100);
+   let availableTenDollar = Math.round(cid[6][1] * 100);
+   let availableFiveDollar = Math.round(cid[5][1] * 100);
+   let availableOneDollar = Math.round(cid[4][1] * 100);
+   let availableQuarter = Math.round(cid[3][1] * 100);
+   let availableDime = Math.round(cid[2][1] * 100);
+   let availableNickel = Math.round(cid[1][1] * 100);
+   let availablePenny = Math.round(cid[0][1] * 100);
+
+   let hundredDollarGiven = 0;
+   let twentyDollarGiven = 0;
+   let tenDollarGiven = 0;
+   let fiveDollarGiven = 0;
+   let oneDollarGiven = 0;
+   let quarterGiven = 0;
+   let dimeGiven = 0;
+   let nickelGiven = 0;
+   let pennyGiven = 0;
+
+   while(customerChange >= 10000 && availableHundredDollar > 10000) {
     customerChange -= 10000;
+    availableHundredDollar -= 10000;
+    hundredDollarGiven += 10000;
    }
-   while(customerChange >= 2000 && cid[7][1] > 0) {
+   while(customerChange >= 2000 && availableTwentyDollar > 2000) {
     customerChange -= 2000;
+    availableTwentyDollar -= 2000;
+    twentyDollarGiven += 2000;
    }
-   while(customerChange >= 1000 && cid[6][1] > 0) {
+   while(customerChange >= 1000 && availableTenDollar > 1000) {
     customerChange -= 1000;
+    availableTenDollar -= 1000;
+    tenDollarGiven += 1000;
    }
-   while(customerChange >= 500 && cid[5][1] > 0) {
+   while(customerChange >= 500 && availableFiveDollar > 500) {
     customerChange -= 500;
+    availableFiveDollar -= 500;
+    fiveDollarGiven += 500;
    }
-   while(customerChange >= 100 && cid[4][1] > 0) {
+   while(customerChange >= 100 && availableOneDollar > 100) {
     customerChange -= 100;
+    availableOneDollar -= 100;
+    oneDollarGiven += 100;
    }
-   while(customerChange >= 25 && cid[3][1] > 0) {
+   while(customerChange >= 25 && availableQuarter > 25) {
     customerChange -= 25;
+    availableQuarter -= 25;
+    quarterGiven += 25;
    }
-   while(customerChange >= 10 && cid[2][1] > 0) {
+   while(customerChange >= 10 && availableDime > 10) {
     customerChange -= 10;
+    availableDime -= 10;
+    dimeGiven += 10;
    }
-   while(customerChange >= 5 && cid[1][1] > 0) {
+   while(customerChange >= 5 && availableNickel > 5) {
     customerChange -= 5;
+    availableNickel -= 5;
+    nickelGiven += 5;
    }
-   while(customerChange >= 1 && cid[0][1] > 0) {
+   while(customerChange >= 1 && availablePenny > 1) {
     customerChange -= 1;
+    availablePenny -= 1;
+    pennyGiven += 1;
+
    }   
    console.log(customerChange);
+   console.log(cid);
   }
 
   
 
 
-calculateChange(7.6);
+calculateChange(120);
 //console.log(cid[8][1]);
 //payment(4);
 //amountInRegister();
