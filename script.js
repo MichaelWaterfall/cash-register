@@ -114,67 +114,73 @@ function calculateChange(customerMoney) {
    let availableNickel = Math.round(cid[1][1] * 100);
    let availablePenny = Math.round(cid[0][1] * 100);
 
-   let hundredDollarGiven = 0;
-   let twentyDollarGiven = 0;
-   let tenDollarGiven = 0;
-   let fiveDollarGiven = 0;
-   let oneDollarGiven = 0;
-   let quarterGiven = 0;
-   let dimeGiven = 0;
-   let nickelGiven = 0;
-   let pennyGiven = 0;
-
-   while(customerChange >= 10000 && availableHundredDollar > 10000) {
+   while(customerChange >= 10000 && availableHundredDollar >= 10000) {
     customerChange -= 10000;
     availableHundredDollar -= 10000;
-    hundredDollarGiven += 10000;
+    changeGiven[8][1] += 10000;
    }
-   while(customerChange >= 2000 && availableTwentyDollar > 2000) {
+   while(customerChange >= 2000 && availableTwentyDollar >= 2000) {
     customerChange -= 2000;
     availableTwentyDollar -= 2000;
-    twentyDollarGiven += 2000;
+    changeGiven[7][1] += 2000;
    }
-   while(customerChange >= 1000 && availableTenDollar > 1000) {
+   while(customerChange >= 1000 && availableTenDollar >= 1000) {
     customerChange -= 1000;
     availableTenDollar -= 1000;
-    tenDollarGiven += 1000;
+    changeGiven[6][1] += 1000;
    }
-   while(customerChange >= 500 && availableFiveDollar > 500) {
+   while(customerChange >= 500 && availableFiveDollar >= 500) {
     customerChange -= 500;
     availableFiveDollar -= 500;
-    fiveDollarGiven += 500;
+    changeGiven[5][1] += 500;
    }
-   while(customerChange >= 100 && availableOneDollar > 100) {
+   while(customerChange >= 100 && availableOneDollar >= 100) {
     customerChange -= 100;
     availableOneDollar -= 100;
-    oneDollarGiven += 100;
+    changeGiven[4][1] += 100;
    }
-   while(customerChange >= 25 && availableQuarter > 25) {
+   while(customerChange >= 25 && availableQuarter >= 25) {
     customerChange -= 25;
     availableQuarter -= 25;
-    quarterGiven += 25;
+    changeGiven[3][1] += 25;
    }
-   while(customerChange >= 10 && availableDime > 10) {
+   while(customerChange >= 10 && availableDime >= 10) {
     customerChange -= 10;
     availableDime -= 10;
-    dimeGiven += 10;
+    changeGiven[2][1] += 10;
    }
-   while(customerChange >= 5 && availableNickel > 5) {
+   while(customerChange >= 5 && availableNickel >= 5) {
     customerChange -= 5;
     availableNickel -= 5;
-    nickelGiven += 5;
+    changeGiven[1][1] += 5;
    }
-   while(customerChange >= 1 && availablePenny > 1) {
+   while(customerChange >= 1 && availablePenny >= 1) {
     customerChange -= 1;
     availablePenny -= 1;
-    pennyGiven += 1;
+    changeGiven[0][1] += 1;
 
    }   
+   registerStatus(customerChange);
    console.log(customerChange);
-   console.log(cid);
+   console.log(changeGiven);
   }
 
-  
+function registerStatus(customerChange) {
+  let totalAmountInRegister = 0;
+  for(let i = 0; i < cid.length; i++) {
+    totalAmountInRegister += Math.round(cid[i][1] * 100) - changeGiven[i][1]
+
+  }
+  if(customerChange > 0 && totalAmountInRegister > 0) {
+    console.log("INSUFFICIENT_FUNDS");
+  }
+  else if(customerChange === 0 && totalAmountInRegister === 0) {
+    console.log("CLOSED");
+  } 
+  else {
+    console.log("OPEN");
+  }
+}  
 
 
 calculateChange(120);
