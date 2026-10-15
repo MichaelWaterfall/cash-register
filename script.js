@@ -204,7 +204,8 @@ function registerStatus(customerChange) {
 }  
 
 
-calculateChange(120);
+//calculateChange(120);
+calculateChange(20);
 //console.log(cid[8][1]);
 //payment(4);
 //amountInRegister();
