@@ -23,6 +23,12 @@ let changeGiven = [
   ['ONE HUNDRED', 0]
 ];
 
+let finalStatus = 
+{
+  status: "",
+  change: 0
+};
+
 function amountInRegister() {
   let totalAmountInRegister = 0
   for (let i = 0; i < cid.length; i++) {
@@ -161,25 +167,40 @@ function calculateChange(customerMoney) {
 
    }   
    registerStatus(customerChange);
-   console.log(customerChange);
-   console.log(changeGiven);
+   //console.log(customerChange);
+   //console.log(changeGiven);
   }
 
 function registerStatus(customerChange) {
   let totalAmountInRegister = 0;
   for(let i = 0; i < cid.length; i++) {
-    totalAmountInRegister += Math.round(cid[i][1] * 100) - changeGiven[i][1]
+    totalAmountInRegister += Math.round(cid[i][1] * 100) - changeGiven[i][1];
 
   }
   if(customerChange > 0 && totalAmountInRegister > 0) {
     console.log("INSUFFICIENT_FUNDS");
+    finalStatus.status = "INSUFFICIENT_FUNDS";
   }
   else if(customerChange === 0 && totalAmountInRegister === 0) {
     console.log("CLOSED");
+    finalStatus.status = "CLOSED";
   } 
   else {
     console.log("OPEN");
+    finalStatus.status = "OPEN";
   }
+  let finalResult = [];
+  //console.log("test");
+  for(let i = changeGiven.length - 1; i >= 0; i--) {
+    if(changeGiven[i][1] > 0) {
+      finalResult.push([changeGiven[i][0], changeGiven[i][1] / 100]);
+    }
+    //console.log(changeGiven[i][1]);
+  }
+  finalStatus.change = finalResult;
+  
+  console.log(finalResult);
+  console.log(finalStatus);
 }  
 
 
