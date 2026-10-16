@@ -1,5 +1,5 @@
 let price = 1.87;
-/*let cid = [
+let cid = [
   ['PENNY', 1.01],
   ['NICKEL', 2.05],
   ['DIME', 3.1],
@@ -9,9 +9,9 @@ let price = 1.87;
   ['TEN', 20],
   ['TWENTY', 60],
   ['ONE HUNDRED', 100]
-];*/
+];
 
-let cid = [
+let testCid = [
   ["PENNY", 0],
   ["NICKEL", 0],
   ["DIME", 0.10],
@@ -102,7 +102,15 @@ function calculateChange(customerMoney) {
 
       }
     }*/
-   let customerChange = Math.round(customerMoney * 100) - Math.round(price * 100);
+   if (customerMoney < price) {
+    console.log("Customer does not have enough money to purchase the item");
+    return;
+   }
+   else if(customerMoney === price) {
+    console.log("No change due - customer paid with exact cash");
+    return;
+   }
+      let customerChange = Math.round(customerMoney * 100) - Math.round(price * 100);
    //console.log(customerChange);
    let changeGiven = [
     ['PENNY', 0],
@@ -177,7 +185,7 @@ function calculateChange(customerMoney) {
     changeGiven[0][1] += 1;
 
    }   
-   registerStatus(customerChange, changeGiven, finalStatus);
+   return registerStatus(customerChange, changeGiven, finalStatus);
    //console.log(customerChange);
    //console.log(changeGiven);
   }
@@ -212,16 +220,20 @@ function registerStatus(customerChange, changeGiven, finalStatus) {
     }
     //console.log(changeGiven[i][1]);
   }
+  if (finalStatus.status === "OPEN") {
+    finalStatus.change = finalResult;
+  }
   //finalStatus.change = finalResult;
   
   console.log(finalResult);
   console.log(finalStatus);
+  return finalStatus;
 }  
 
 
 //calculateChange(120);
-calculateChange(20);
-calculateChange(20);
+calculateChange(1.50);
+calculateChange(1.87);
 //console.log(cid[8][1]);
 //payment(4);
 //amountInRegister();
