@@ -1,3 +1,9 @@
+const purchaseButton = document.getElementById("purchase-btn");
+
+purchaseButton.addEventListener("click",  function() {
+  console.log("Purchase button clicked!");
+});
+
 let price = 1.87;
 let cid = [
   ['PENNY', 1.01],
