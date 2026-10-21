@@ -1,21 +1,29 @@
+const cashInput = document.getElementById("cash");
 const purchaseButton = document.getElementById("purchase-btn");
+const changeDue = document.getElementById("change-due");
 
 purchaseButton.addEventListener("click",  function() {
   console.log("Purchase button clicked!");
+  const result = calculateChange(Number(cashInput.value));
+
+  if (result === undefined) {
+    return;
+  }
+
+  changeDue.textContent = `Status: ${result.status}`;
+    for(let i = 0; i < result.change.length; i++) {
+      //console.log(result.change[0][0] + ": " + result.change[0][i]);
+      changeDue.textContent += ` ${result.change[i][0]}: $${result.change[i][1]}`;
+    }
+  /*for(let j = 0; j < result.change.length; j++) {
+    for(let i = 0; i < result.change.length; i++) {
+      console.log(result.change[j][0] + ": " + result.change[i][1]);
+    }
+  }*/
 });
 
-let price = 1.87;
-let cid = [
-  ['PENNY', 1.01],
-  ['NICKEL', 2.05],
-  ['DIME', 3.1],
-  ['QUARTER', 4.25],
-  ['ONE', 90],
-  ['FIVE', 55],
-  ['TEN', 20],
-  ['TWENTY', 60],
-  ['ONE HUNDRED', 100]
-];
+let price = 19.5;
+let cid = [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]];
 
 let testCid = [
   ["PENNY", 0],
@@ -84,6 +92,7 @@ function payment(customerMoney) {
     //minimum payment and maximum payment
     //for maximum payment add up all cid values 
     //loop through input
+    
 }
 function calculateChange(customerMoney) {
   //function to split number into whole and decimal to calculate change
@@ -109,15 +118,19 @@ function calculateChange(customerMoney) {
       }
     }*/
    if (customerMoney < price) {
-    console.log("Customer does not have enough money to purchase the item");
+    alert("Customer does not have enough money to purchase the item");
     return;
-   }
+  }
    else if(customerMoney === price) {
     console.log("No change due - customer paid with exact cash");
+    changeDue.textContent = "No change due - customer paid with exact cash";
+    console.log(changeDue.textContent);
     return;
    }
       let customerChange = Math.round(customerMoney * 100) - Math.round(price * 100);
    //console.log(customerChange);
+
+   
    let changeGiven = [
     ['PENNY', 0],
     ['NICKEL', 0],
@@ -198,34 +211,42 @@ function calculateChange(customerMoney) {
 
 function registerStatus(customerChange, changeGiven, finalStatus) {
   let totalAmountInRegister = 0;
+  let finalResult = [];
   for(let i = 0; i < cid.length; i++) {
     totalAmountInRegister += Math.round(cid[i][1] * 100) - changeGiven[i][1];
 
   }
+  for(let i = changeGiven.length - 1; i >= 0; i--) {
+      if(changeGiven[i][1] > 0) {
+        finalResult.push([changeGiven[i][0], changeGiven[i][1] / 100]);
+      }
+  }
   //console.log(customerChange);
   //console.log(totalAmountInRegister);
-  if(customerChange > totalAmountInRegister) {
+  if(customerChange > 0) {
     //console.log("INSUFFICIENT_FUNDS");
+    console.log("Code errors here");
     finalStatus.status = "INSUFFICIENT_FUNDS";
     finalStatus.change = [];
   }
   else if(customerChange === 0 && totalAmountInRegister === 0) {
     console.log("CLOSED");
     finalStatus.status = "CLOSED";
-    finalStatus.change = cid;
+    finalStatus.change = finalResult;
   } 
   else {
     console.log("OPEN");
     finalStatus.status = "OPEN";
+    finalStatus.change = finalResult;
   }
-  let finalResult = [];
+  
   //console.log("test");
-  for(let i = changeGiven.length - 1; i >= 0; i--) {
+ /*for(let i = changeGiven.length - 1; i >= 0; i--) {
     if(changeGiven[i][1] > 0) {
       finalResult.push([changeGiven[i][0], changeGiven[i][1] / 100]);
     }
     //console.log(changeGiven[i][1]);
-  }
+  }*/
   if (finalStatus.status === "OPEN") {
     finalStatus.change = finalResult;
   }
