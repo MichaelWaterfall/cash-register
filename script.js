@@ -3,7 +3,6 @@ const purchaseButton = document.getElementById("purchase-btn");
 const changeDue = document.getElementById("change-due");
 
 purchaseButton.addEventListener("click",  function() {
-  console.log("Purchase button clicked!");
   const result = calculateChange(Number(cashInput.value));
 
   if (result === undefined) {
@@ -19,39 +18,26 @@ purchaseButton.addEventListener("click",  function() {
 let price = 19.5;
 document.getElementById("item-price").textContent =
   `Total Price: $${price.toFixed(2)}`;
-let cid = [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]];
-
-let testCid = [
-  ["PENNY", 0],
-  ["NICKEL", 0],
-  ["DIME", 0.10],
-  ["QUARTER", 0],
-  ["ONE", 3],
-  ["FIVE", 5],
-  ["TEN", 10],
-  ["TWENTY", 0],
-  ["ONE HUNDRED", 0]
+let cid = [
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
 ];
 
-function amountInRegister() {
-  let totalAmountInRegister = 0
-  for (let i = 0; i < cid.length; i++) {
-    totalAmountInRegister += cid[i][1];
-  }
-  return(totalAmountInRegister);
-}
 
 function calculateChange(customerMoney) {
-  //function to split number into whole and decimal to calculate change
-  //split change up not their input, calculate change before split decimal
    if (customerMoney < price) {
     alert("Customer does not have enough money to purchase the item");
     return;
   }
    else if(customerMoney === price) {
-    console.log("No change due - customer paid with exact cash");
     changeDue.textContent = "No change due - customer paid with exact cash";
-    console.log(changeDue.textContent);
     return;
    }
       let customerChange = Math.round(customerMoney * 100) - Math.round(price * 100);
@@ -146,34 +132,17 @@ function registerStatus(customerChange, changeGiven, finalStatus) {
       }
   }
   if(customerChange > 0) {
-    console.log("Code errors here");
     finalStatus.status = "INSUFFICIENT_FUNDS";
     finalStatus.change = [];
   }
   else if(customerChange === 0 && totalAmountInRegister === 0) {
-    console.log("CLOSED");
     finalStatus.status = "CLOSED";
     finalStatus.change = finalResult;
   } 
   else {
-    console.log("OPEN");
     finalStatus.status = "OPEN";
     finalStatus.change = finalResult;
   }
   
-  if (finalStatus.status === "OPEN") {
-    finalStatus.change = finalResult;
-  }
-  
-  console.log(finalResult);
-  console.log(finalStatus);
   return finalStatus;
 }  
-
-
-//calculateChange(120);
-//calculateChange(1.50);
-//calculateChange(1.87);
-//console.log(cid[8][1]);
-//payment(4);
-//amountInRegister();
