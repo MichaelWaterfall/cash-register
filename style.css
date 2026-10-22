@@ -55,3 +55,23 @@ h1 {
   color: #2563eb;
   margin: 20px 0;
 }
+
+#item-price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+#cash {
+  display: block;
+  margin: 20px auto;
+}
+
+#purchase-btn {
+  display: block;
+  margin: 10px auto;
+}
+
+#change-due:empty {
+  display: none;
+}
