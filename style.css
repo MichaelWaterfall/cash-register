@@ -44,3 +44,14 @@ h1 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   line-height: 1.8;
 }
+
+#change-due:empty {
+  display: none;
+}
+
+#item-price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2563eb;
+  margin: 20px 0;
+}
