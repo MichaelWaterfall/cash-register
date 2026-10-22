@@ -1,0 +1,46 @@
+body {
+  background-color: #f1f5f9;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 50px 20px;
+  color: #1e293b;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+#cash {
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  width: 200px;
+  max-width: 90%;
+  margin: 10px;
+}
+
+#purchase-btn {
+  padding: 12px 24px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#purchase-btn:hover {
+  background-color: #1d4ed8;
+}
+
+#change-due {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  line-height: 1.8;
+}
